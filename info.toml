@@ -239,3 +239,7 @@ mode = "test"
 [[exercises]]
 path = "exercises/standard_library_types/iterators4.rs"
 mode = "test"
+
+[[exercises]]
+path = "exercises/standard_library_types/iterators5.rs"
+mode = "test"
