@@ -1,6 +1,6 @@
 use crate::exercise::{CompiledExercise, Exercise, Mode, State};
 use console::style;
-use indicatif::ProgressBar;
+use indicatif::{ProgressBar, ProgressStyle};
 
 // Verify that the provided container of Exercise objects
 // can be compiled and run without any failures.
@@ -8,10 +8,17 @@ use indicatif::ProgressBar;
 // If the Exercise being verified is a test, the verbose boolean
 // determines whether or not the test harness outputs are displayed.
 pub fn verify<'a>(
-    start_at: impl IntoIterator<Item = &'a Exercise>,
-    verbose: bool,
+    exercises: &'a [Exercise],
+    skip_n: usize,
+    verbose: bool
 ) -> Result<(), &'a Exercise> {
-    for exercise in start_at {
+    let bar = ProgressBar::new(exercises.len() as u64);
+    bar.set_style(ProgressStyle::default_bar()
+        .template("Progress: [{bar:60.green/red}] {pos}/{len}")
+        .progress_chars("#>-")
+    );
+    bar.set_position(skip_n as u64);
+    for exercise in exercises.iter().skip(skip_n) {
         let compile_result = match exercise.mode {
             Mode::Test => compile_and_test(&exercise, RunMode::Interactive, verbose),
             Mode::Compile => compile_and_run_interactively(&exercise),
@@ -20,6 +27,7 @@ pub fn verify<'a>(
         if !compile_result.unwrap_or(false) {
             return Err(exercise);
         }
+        bar.inc(1);
     }
     Ok(())
 }
@@ -44,7 +52,6 @@ fn compile_only(exercise: &Exercise) -> Result<bool, ()> {
     let _ = compile(&exercise, &progress_bar)?;
     progress_bar.finish_and_clear();
 
-    success!("Successfully compiled {}!", exercise);
     Ok(prompt_for_completion(&exercise, None))
 }
 
@@ -70,8 +77,6 @@ fn compile_and_run_interactively(exercise: &Exercise) -> Result<bool, ()> {
         }
     };
 
-    success!("Successfully ran {}!", exercise);
-
     Ok(prompt_for_completion(&exercise, Some(output.stdout)))
 }
 
@@ -91,7 +96,6 @@ fn compile_and_test(exercise: &Exercise, run_mode: RunMode, verbose: bool) -> Re
             if verbose {
                 println!("{}", output.stdout);
             }
-            success!("Successfully tested {}", &exercise);
             if let RunMode::Interactive = run_mode {
                 Ok(prompt_for_completion(&exercise, None))
             } else {
@@ -136,6 +140,12 @@ fn prompt_for_completion(exercise: &Exercise, prompt_output: Option<String>) -> 
         State::Done => return true,
         State::Pending(context) => context,
     };
+
+    match exercise.mode {
+        Mode::Compile => success!("Successfully ran {}!", exercise),
+        Mode::Test => success!("Successfully tested {}!", exercise),
+        Mode::Clippy => success!("Successfully compiled {}!", exercise),
+    }
 
     let success_msg = match exercise.mode {
         Mode::Compile => "The code is compiling!",

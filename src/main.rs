@@ -116,7 +116,7 @@ fn main() {
     }
 
     if matches.subcommand_matches("verify").is_some() {
-        verify(&exercises, verbose).unwrap_or_else(|_| std::process::exit(1));
+        verify(&exercises, 0, verbose).unwrap_or_else(|_| std::process::exit(1));
     }
 
     if matches.subcommand_matches("watch").is_some() && watch(&exercises, verbose).is_ok() {
@@ -177,7 +177,7 @@ fn watch(exercises: &[Exercise], verbose: bool) -> notify::Result<()> {
     clear_screen();
 
     let to_owned_hint = |t: &Exercise| t.hint.to_owned();
-    let failed_exercise_hint = match verify(exercises.iter(), verbose) {
+    let failed_exercise_hint = match verify(exercises, 0, verbose) {
         Ok(_) => return Ok(()),
         Err(exercise) => Arc::new(Mutex::new(Some(to_owned_hint(exercise)))),
     };
@@ -188,11 +188,12 @@ fn watch(exercises: &[Exercise], verbose: bool) -> notify::Result<()> {
                 DebouncedEvent::Create(b) | DebouncedEvent::Chmod(b) | DebouncedEvent::Write(b) => {
                     if b.extension() == Some(OsStr::new("rs")) && b.exists() {
                         let filepath = b.as_path().canonicalize().unwrap();
-                        let pending_exercises = exercises
-                            .iter()
-                            .skip_while(|e| !filepath.ends_with(&e.path));
+                        let skip_n = match exercises.iter().position(|e| filepath.ends_with(&e.path)) {
+                            Some(index) => index,
+                            None => continue,
+                        };
                         clear_screen();
-                        match verify(pending_exercises, verbose) {
+                        match verify(exercises, skip_n, verbose) {
                             Ok(_) => return Ok(()),
                             Err(exercise) => {
                                 let mut failed_exercise_hint = failed_exercise_hint.lock().unwrap();
