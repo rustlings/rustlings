@@ -1,4 +1,7 @@
-use crate::exercise::{CompiledExercise, Exercise, Mode, State};
+use crate::{
+    exercise::{CompiledExercise, Exercise, Mode, State},
+    manifest,
+};
 use console::style;
 use indicatif::ProgressBar;
 
@@ -9,6 +12,7 @@ use indicatif::ProgressBar;
 // determines whether or not the test harness outputs are displayed.
 pub fn verify<'a>(
     start_at: impl IntoIterator<Item = &'a Exercise>,
+    root: Option<&str>,
     verbose: bool,
 ) -> Result<(), &'a Exercise> {
     for exercise in start_at {
@@ -18,6 +22,7 @@ pub fn verify<'a>(
             Mode::Clippy => compile_only(&exercise),
         };
         if !compile_result.unwrap_or(false) {
+            manifest::update(exercise, root);
             return Err(exercise);
         }
     }

@@ -1,4 +1,4 @@
-use crate::exercise::{Exercise, ExerciseList};
+use crate::exercise::{Exercise, ExerciseInfo};
 use crate::run::run;
 use crate::verify::verify;
 use clap::{crate_version, App, Arg, SubCommand};
@@ -19,6 +19,7 @@ use std::time::Duration;
 mod ui;
 
 mod exercise;
+mod manifest;
 mod run;
 mod verify;
 
@@ -85,7 +86,7 @@ fn main() {
     }
 
     let toml_str = &fs::read_to_string("info.toml").unwrap();
-    let exercises = toml::from_str::<ExerciseList>(toml_str).unwrap().exercises;
+    let ExerciseInfo { exercises, root } = toml::from_str::<ExerciseInfo>(toml_str).unwrap();
     let verbose = matches.is_present("nocapture");
 
     if let Some(ref matches) = matches.subcommand_matches("run") {
@@ -116,10 +117,12 @@ fn main() {
     }
 
     if matches.subcommand_matches("verify").is_some() {
-        verify(&exercises, verbose).unwrap_or_else(|_| std::process::exit(1));
+        verify(&exercises, root.as_deref(), verbose).unwrap_or_else(|_| std::process::exit(1));
     }
 
-    if matches.subcommand_matches("watch").is_some() && watch(&exercises, verbose).is_ok() {
+    if matches.subcommand_matches("watch").is_some()
+        && watch(&exercises, root.as_deref(), verbose).is_ok()
+    {
         println!(
             "{emoji} All exercises completed! {emoji}",
             emoji = Emoji("🎉", "★")
@@ -162,7 +165,7 @@ fn spawn_watch_shell(failed_exercise_hint: &Arc<Mutex<Option<String>>>) {
     });
 }
 
-fn watch(exercises: &[Exercise], verbose: bool) -> notify::Result<()> {
+fn watch(exercises: &[Exercise], root: Option<&str>, verbose: bool) -> notify::Result<()> {
     /* Clears the terminal with an ANSI escape code.
     Works in UNIX and newer Windows terminals. */
     fn clear_screen() {
@@ -177,7 +180,7 @@ fn watch(exercises: &[Exercise], verbose: bool) -> notify::Result<()> {
     clear_screen();
 
     let to_owned_hint = |t: &Exercise| t.hint.to_owned();
-    let failed_exercise_hint = match verify(exercises.iter(), verbose) {
+    let failed_exercise_hint = match verify(exercises.iter(), root, verbose) {
         Ok(_) => return Ok(()),
         Err(exercise) => Arc::new(Mutex::new(Some(to_owned_hint(exercise)))),
     };
@@ -192,7 +195,7 @@ fn watch(exercises: &[Exercise], verbose: bool) -> notify::Result<()> {
                             .iter()
                             .skip_while(|e| !filepath.ends_with(&e.path));
                         clear_screen();
-                        match verify(pending_exercises, verbose) {
+                        match verify(pending_exercises, root, verbose) {
                             Ok(_) => return Ok(()),
                             Err(exercise) => {
                                 let mut failed_exercise_hint = failed_exercise_hint.lock().unwrap();

@@ -1,13 +1,13 @@
 use regex::Regex;
 use serde::Deserialize;
 use std::fmt::{self, Display, Formatter};
-use std::fs::{self, remove_file, File};
-use std::io::Read;
+use std::fs::{self, remove_file};
 use std::path::PathBuf;
 use std::process::{self, Command};
 
 const RUSTC_COLOR_ARGS: &[&str] = &["--color", "always"];
 const I_AM_DONE_REGEX: &str = r"(?m)^\s*///?\s*I\s+AM\s+NOT\s+DONE";
+const MAIN_FN_REGEX: &str = r"(?m)^\s*fn\s+main\s*\(\s*\)";
 const CONTEXT: usize = 2;
 const CLIPPY_CARGO_TOML_PATH: &str = "./exercises/clippy/Cargo.toml";
 
@@ -35,7 +35,8 @@ pub enum Mode {
 }
 
 #[derive(Deserialize)]
-pub struct ExerciseList {
+pub struct ExerciseInfo {
+    pub root: Option<String>,
     pub exercises: Vec<Exercise>,
 }
 
@@ -192,17 +193,7 @@ path = "{}.rs""#,
     }
 
     pub fn state(&self) -> State {
-        let mut source_file =
-            File::open(&self.path).expect("We were unable to open the exercise file!");
-
-        let source = {
-            let mut s = String::new();
-            source_file
-                .read_to_string(&mut s)
-                .expect("We were unable to read the exercise file!");
-            s
-        };
-
+        let source = self.source();
         let re = Regex::new(I_AM_DONE_REGEX).unwrap();
 
         if !re.is_match(&source) {
@@ -232,6 +223,16 @@ path = "{}.rs""#,
 
         State::Pending(context)
     }
+
+    pub fn is_binary(&self) -> bool {
+        let source = self.source();
+        let re = Regex::new(MAIN_FN_REGEX).unwrap();
+        re.is_match(&source)
+    }
+
+    fn source(&self) -> String {
+        fs::read_to_string(&self.path).expect("Unable to read exercise source")
+    }
 }
 
 impl Display for Exercise {
@@ -248,7 +249,7 @@ fn clean() {
 #[cfg(test)]
 mod test {
     use super::*;
-    use std::path::Path;
+    use std::{fs::File, path::Path};
 
     #[test]
     fn test_clean() {
