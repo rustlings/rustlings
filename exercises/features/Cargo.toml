@@ -1,0 +1,13 @@
+[package]
+name = "features"
+version = "0.0.1"
+edition = "2018"
+
+[lib]
+name = "features1"
+path = "src/features1.rs"
+
+[features]
+english = []
+russian = []
+korean = []

@@ -472,6 +472,15 @@ path = "exercises/quiz4.rs"
 mode = "test"
 hint = "No hints this time ;)"
 
+# FEATURES
+
+[[exercies]]
+name = "features1"
+path = "exercises/features/src/features1.rs"
+mode = "feature"
+hint = """TODO: Add some nice hint!"""
+features = ["english", "korean", "russian"]
+
 # MOVE SEMANTICS
 
 [[exercises]]
