@@ -1,11 +1,11 @@
 // vec2.rs
+//
 // A Vec of even numbers is given. Your task is to complete the loop
 // so that each number in the Vec is multiplied by 2.
 //
 // Make me pass the test!
 //
-// Execute the command `rustlings hint vec2` if you need
-// hints.
+// If you need help, open the corresponding README.md or run: rustlings hint vec2
 
 // I AM NOT DONE
 

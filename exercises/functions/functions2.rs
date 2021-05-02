@@ -1,5 +1,8 @@
 // functions2.rs
-// Make me compile! Execute `rustlings hint functions2` for hints :)
+//
+// Make me compile!
+//
+// If you need help, open the corresponding README.md or run: rustlings hint functions2
 
 // I AM NOT DONE
 

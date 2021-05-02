@@ -1,7 +1,9 @@
 // primitive_types6.rs
+//
 // Use a tuple index to access the second element of `numbers`.
 // You can put the expression for the second element where ??? is so that the test passes.
-// Execute `rustlings hint primitive_types6` for hints!
+//
+// If you need help, open the corresponding README.md or run: rustlings hint primitive_types6
 
 // I AM NOT DONE
 

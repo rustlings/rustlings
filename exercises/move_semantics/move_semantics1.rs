@@ -1,5 +1,8 @@
 // move_semantics1.rs
-// Make me compile! Execute `rustlings hint move_semantics1` for hints :)
+//
+// Make me compile!
+//
+// If you need help, open the corresponding README.md or run: rustlings hint move_semantics1
 
 // I AM NOT DONE
 

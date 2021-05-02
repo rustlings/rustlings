@@ -1,4 +1,5 @@
 // errorsn.rs
+//
 // This is a bigger error exercise than the previous ones!
 // You can do it! :)
 //
@@ -15,7 +16,7 @@
 // type goes where the question marks are, and how do we return
 // that type from the body of read_and_validate?
 //
-// Execute `rustlings hint errorsn` for hints :)
+// If you need help, open the corresponding README.md or run: rustlings hint errorsn
 
 // I AM NOT DONE
 

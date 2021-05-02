@@ -1,9 +1,13 @@
 // if1.rs
+//
+// Make me compile!
+//
+// If you need help, open the corresponding README.md or run: rustlings hint if1
 
 // I AM NOT DONE
 
 pub fn bigger(a: i32, b: i32) -> i32 {
-    // Complete this function to return the bigger number!
+    // TODO: Complete this function to return the bigger number!
     // Do not use:
     // - another function call
     // - additional variables

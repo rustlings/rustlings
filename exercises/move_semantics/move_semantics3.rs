@@ -1,7 +1,9 @@
 // move_semantics3.rs
+//
 // Make me compile without adding new lines-- just changing existing lines!
 // (no lines with multiple semicolons necessary!)
-// Execute `rustlings hint move_semantics3` for hints :)
+//
+// If you need help, open the corresponding README.md or run: rustlings hint move_semantics3
 
 // I AM NOT DONE
 

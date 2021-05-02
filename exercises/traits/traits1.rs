@@ -1,4 +1,5 @@
 // traits1.rs
+//
 // Time to implement some traits!
 //
 // Your task is to implement the trait
@@ -7,6 +8,8 @@
 // The trait AppendBar has only one function,
 // which appends "Bar" to any object
 // implementing this trait.
+//
+// If you need help, open the corresponding README.md or run: rustlings hint traits1
 
 // I AM NOT DONE
 
@@ -15,7 +18,7 @@ trait AppendBar {
 }
 
 impl AppendBar for String {
-    //Add your code here
+    // Add your code here
 }
 
 fn main() {

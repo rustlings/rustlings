@@ -1,5 +1,8 @@
 // result1.rs
-// Make this test pass! Execute `rustlings hint result1` for hints :)
+//
+// Make this test pass!
+//
+// If you need help, open the corresponding README.md or run: rustlings hint result1
 
 // I AM NOT DONE
 

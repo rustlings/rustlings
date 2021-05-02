@@ -1,8 +1,10 @@
 // errors3.rs
+//
 // This is a program that is trying to use a completed version of the
 // `total_cost` function from the previous exercise. It's not working though!
 // Why not? What should we do to fix it?
-// Execute `rustlings hint errors3` for hints!
+//
+// If you need help, open the corresponding README.md or run: rustlings hint errors3
 
 // I AM NOT DONE
 

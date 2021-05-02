@@ -1,5 +1,8 @@
 // enums3.rs
+//
 // Address all the TODOs to make the tests pass!
+//
+// If you need help, open the corresponding README.md or run: rustlings hint enums3
 
 // I AM NOT DONE
 

@@ -1,5 +1,9 @@
+// generics2.rs
+//
 // This powerful wrapper provides the ability to store a positive integer value.
 // Rewrite it using generics so that it supports wrapping ANY type.
+//
+// If you need help, open the corresponding README.md or run: rustlings hint generics2
 
 // I AM NOT DONE
 

@@ -1,5 +1,5 @@
 // hashmap2.rs
-
+//
 // A basket of fruits in the form of a hash map is given. The key
 // represents the name of the fruit and the value represents how many
 // of that particular fruit is in the basket. You have to put *MORE
@@ -9,8 +9,7 @@
 //
 // Make me pass the tests!
 //
-// Execute the command `rustlings hint hashmap2` if you need
-// hints.
+// If you need help, open the corresponding README.md or run: rustlings hint hashmap2
 
 // I AM NOT DONE
 

@@ -14,7 +14,7 @@
 //
 // Note: the tests should not be changed
 //
-// Execute `rustlings hint box1` for hints :)
+// If you need help, open the corresponding README.md or run: rustlings hint box1
 
 // I AM NOT DONE
 

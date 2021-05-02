@@ -1,11 +1,13 @@
 // quiz3.rs
-// This is a quiz for the following sections:
+//
+// This quiz covers the sections:
 // - Tests
-
+//
 // This quiz isn't testing our function -- make it do that in such a way that
 // the test passes. Then write a second test that tests that we get the result
 // we expect to get when we call `times_two` with a negative number.
-// No hints, you can do this :)
+//
+// No hints this time :)
 
 // I AM NOT DONE
 
@@ -24,7 +26,7 @@ mod tests {
 
     #[test]
     fn returns_twice_of_negative_numbers() {
-        // TODO replace unimplemented!() with an assert for `times_two(-4)`
+        // TODO: replace unimplemented!() with an assert for `times_two(-4)`
         unimplemented!()
     }
 }

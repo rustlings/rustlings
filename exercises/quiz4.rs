@@ -1,9 +1,12 @@
 // quiz4.rs
+//
 // This quiz covers the sections:
 // - Modules
 // - Macros
-
+//
 // Write a macro that passes the quiz! No hints this time, you can do it!
+//
+// No hints this time :)
 
 // I AM NOT DONE
 

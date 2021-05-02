@@ -1,5 +1,8 @@
 // enums2.rs
-// Make me compile! Execute `rustlings hint enums2` for hints!
+//
+// Make me compile!
+//
+// If you need help, open the corresponding README.md or run: rustlings hint enums2
 
 // I AM NOT DONE
 

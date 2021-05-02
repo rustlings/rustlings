@@ -1,6 +1,8 @@
 // macros3.rs
+//
 // Make me compile, without taking the macro out of the module!
-// Execute `rustlings hint macros3` for hints :)
+//
+// If you need help, open the corresponding README.md or run: rustlings hint macros3
 
 // I AM NOT DONE
 

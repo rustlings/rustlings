@@ -1,9 +1,12 @@
 // option1.rs
-// Make me compile! Execute `rustlings hint option1` for hints
+//
+// Make me compile!
+//
+// If you need help, open the corresponding README.md or run: rustlings hint option1
 
 // I AM NOT DONE
 
-// you can modify anything EXCEPT for this function's sig
+// You can modify anything EXCEPT for this function's sig
 fn print_number(maybe_number: Option<u16>) {
     println!("printing: {}", maybe_number.unwrap());
 }

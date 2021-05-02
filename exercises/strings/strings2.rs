@@ -1,6 +1,8 @@
 // strings2.rs
+//
 // Make me compile without changing the function signature!
-// Execute `rustlings hint strings2` for hints :)
+//
+// If you need help, open the corresponding README.md or run: rustlings hint strings2
 
 // I AM NOT DONE
 

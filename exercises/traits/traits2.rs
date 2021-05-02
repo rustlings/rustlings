@@ -9,6 +9,8 @@
 //
 // No boiler plate code this time,
 // you can do this!
+//
+// If you need help, open the corresponding README.md or run: rustlings hint traits2
 
 // I AM NOT DONE
 
@@ -16,7 +18,7 @@ trait AppendBar {
     fn append_bar(self) -> Self;
 }
 
-//TODO: Add your code here
+// TODO: Add your code here
 
 #[cfg(test)]
 mod tests {

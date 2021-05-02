@@ -1,6 +1,8 @@
 // primitive_types4.rs
+//
 // Get a slice out of Array a where the ??? is so that the test passes.
-// Execute `rustlings hint primitive_types4` for hints!!
+//
+// If you need help, open the corresponding README.md or run: rustlings hint primitive_types4
 
 // I AM NOT DONE
 

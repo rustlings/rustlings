@@ -1,5 +1,8 @@
 // clippy2.rs
-// Make me compile! Execute `rustlings hint clippy2` for hints :)
+//
+// Make me compile! 
+//
+// If you need help, open the corresponding README.md or run: rustlings hint clippy2
 
 // I AM NOT DONE
 

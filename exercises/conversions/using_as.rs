@@ -1,9 +1,13 @@
+// using_as.rs
+//
 // Type casting in Rust is done via the usage of the `as` operator.
 // Please note that the `as` operator is not only used when type casting.
 // It also helps with renaming imports.
 //
 // The goal is to make sure that the division does not fail to compile
 // and returns the proper type.
+//
+// If you need help, open the corresponding README.md or run: rustlings hint using_as
 
 // I AM NOT DONE
 

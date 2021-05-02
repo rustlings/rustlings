@@ -1,5 +1,8 @@
 // variables3.rs
-// Make me compile! Execute the command `rustlings hint variables3` if you want a hint :)
+//
+// Make me compile!
+//
+// If you need help, open the corresponding README.md or run: rustlings hint variables3
 
 // I AM NOT DONE
 

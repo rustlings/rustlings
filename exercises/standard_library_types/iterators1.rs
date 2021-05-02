@@ -6,7 +6,7 @@
 // This module helps you get familiar with the structure of using an iterator and 
 // how to go through elements within an iterable collection.
 // 
-// Execute `rustlings hint iterators1` for hints :D
+// If you need help, open the corresponding README.md or run: rustlings hint iterators1
 
 // I AM NOT DONE
 

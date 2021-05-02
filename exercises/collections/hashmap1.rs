@@ -1,4 +1,5 @@
 // hashmap1.rs
+//
 // A basket of fruits in the form of a hash map needs to be defined.
 // The key represents the name of the fruit and the value represents
 // how many of that particular fruit is in the basket. You have to put
@@ -8,8 +9,7 @@
 //
 // Make me compile and pass the tests!
 //
-// Execute the command `rustlings hint hashmap1` if you need
-// hints.
+// If you need help, open the corresponding README.md or run: rustlings hint hashmap1
 
 // I AM NOT DONE
 
