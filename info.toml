@@ -910,3 +910,20 @@ hint = """
 The implementation of FromStr should return an Ok with a Person object,
 or an Err with an error if the string is not valid.
 This is almost like the `try_from_into` exercise."""
+
+[[exercises]]
+name = "readfile1"
+path = "exercises/stdio/readfile1.rs"
+mode = "compile"
+hint = """
+File implement Read and Write Traits. 
+Read and Write methods require a &mut File, because of the interfaces for Read and Write
+"""
+[[exercises]]
+name = "readfile2"
+path = "exercises/stdio/readfile2.rs"
+mode = "compile"
+hint = """
+BufReader 
+implements Read and Write traits 
+"""
