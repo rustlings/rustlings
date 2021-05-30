@@ -7,3 +7,4 @@ exercises/clippy/Cargo.toml
 exercises/clippy/Cargo.lock
 .idea
 .vscode
+temp_*
