@@ -51,6 +51,7 @@ using a special keyword. Unfortunately this doesn't help us much in this exercis
 because we want to assign a different typed value to an existing variable. Sometimes
 you may also like to reuse existing variable names because you are just converting
 values to different types like in this exercise.
+
 Fortunately Rust has a powerful solution to this problem: 'Shadowing'!
 You can read more about 'Shadowing' in the book's section 'Variables and Mutability':
 https://doc.rust-lang.org/book/ch03-01-variables-and-mutability.html#shadowing
@@ -146,7 +147,7 @@ For that first compiler error, it's important in Rust that each conditional
 block return the same type! To get the tests passing, you will need a couple
 conditions checking different input values."""
 
-# TEST 1
+# QUIZ 1
 
 [[exercises]]
 name = "quiz1"
@@ -202,6 +203,7 @@ mode = "compile"
 hint = """
 Stop reading whenever you feel like you have enough direction :) Or try
 doing one step and then fixing the compiler errors that result!
+
 So the end goal is to:
    - get rid of the first line in main that creates the new vector
    - so then `vec0` doesn't exist, so we can't pass it to `fill_vec`
@@ -440,7 +442,7 @@ Yes, it would be really easy to fix this by just changing the value bound to `wo
 string slice instead of a `String`, wouldn't it?? There is a way to add one character to line
 9, though, that will coerce the `String` into a string slice."""
 
-# TEST 2
+# QUIZ 2
 
 [[exercises]]
 name = "quiz2"
@@ -499,12 +501,10 @@ at the test helper function `test_with_str`, since it returns whatever
 `read_and_validate` returns and `test_with_str` has its signature fully
 specified.
 
-
 Next hint: There are three places in `read_and_validate` that we call a
 function that returns a `Result` (that is, the functions might fail).
 Apply the `?` operator on those calls so that we return immediately from
 `read_and_validate` if those function calls fail.
-
 
 Another hint: under the hood, the `?` operator calls `From::from`
 on the error value to convert it to a boxed trait object, a Box<dyn error::Error>,
@@ -514,20 +514,18 @@ since they all implement the `error::Error` trait.
 Check out this section of the book:
 https://doc.rust-lang.org/book/ch09-02-recoverable-errors-with-result.html#a-shortcut-for-propagating-errors-the--operator
 
-
 Another another hint: Note that because the `?` operator returns
 the *unwrapped* value in the `Ok` case, if we want to return a `Result` from
 `read_and_validate` for *its* success case, we'll have to rewrap a value
 that we got from the return value of a `?`ed call in an `Ok`-- this will
 look like `Ok(something)`.
 
-
 Another another another hint: `Result`s must be "used", that is, you'll
 get a warning if you don't handle a `Result` that you get in your
 function. Read more about that in the `std::result` module docs:
 https://doc.rust-lang.org/std/result/#results-must-be-used"""
 
-# Generics
+# GENERICS
 
 [[exercises]]
 name = "generics1"
@@ -664,9 +662,10 @@ mode = "test"
 hint = """
 You can call a function right where you're passing arguments to `assert!` -- so you could do
 something like `assert!(having_fun())`. If you want to check that you indeed get false, you
-can negate the result of what you're doing using `!`, like `assert!(!having_fun())`."""
+can negate the result of what you're doing using `!`, like `assert!(!having_fun())`.
 
-# TEST 3
+To test if 2 arguments are equal, you can use the macro `assert_eq!()` (eq = equal). To test if
+2 arguments differ, you can use the macro `assert_ne!()` (ne = not equal)"""
 
 [[exercises]]
 name = "quiz3"
@@ -711,6 +710,8 @@ is too much of a struggle, consider reading through all of Chapter 16 in the boo
 https://doc.rust-lang.org/stable/book/ch16-00-concurrency.html
 """
 
+# ITERATORS
+
 [[exercises]]
 name = "iterators1"
 path = "exercises/standard_library_types/iterators1.rs"
@@ -720,8 +721,10 @@ Step 1:
 We need to apply something to the collection `my_fav_fruits` before we start to go through
 it. What could that be? Take a look at the struct definition for a vector for inspiration:
 https://doc.rust-lang.org/std/vec/struct.Vec.html.
+
 Step 2 & step 2.1:
 Very similar to the lines above and below. You've got this!
+
 Step 3:
 An iterator goes through all elements in a collection, but what if we've run out of
 elements? What should we expect here? If you're stuck, take a look at
@@ -804,13 +807,11 @@ mutate the data at a time. Take a look at this section of the book:
 https://doc.rust-lang.org/book/ch16-03-shared-state.html#atomic-reference-counting-with-arct
 and keep reading if you'd like more hints :)
 
-
 Do you now have an `Arc` `Mutex` `JobStatus` at the beginning of main? Like:
 `let status = Arc::new(Mutex::new(JobStatus { jobs_completed: 0 }));`
 Similar to the code in the example in the book that happens after the text
 that says "We can use Arc<T> to fix this.". If not, give that a try! If you
 do and would like more hints, keep reading!!
-
 
 Make sure neither of your threads are holding onto the lock of the mutex
 while they are sleeping, since this will prevent the other thread from
@@ -871,7 +872,7 @@ You only need to add a single character to make this compile.
 The way macros are written, it wants to see something between each
 "macro arm", so it can separate them."""
 
-# TEST 4
+# QUIZ 4
 
 [[exercises]]
 name = "quiz4"
