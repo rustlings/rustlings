@@ -974,3 +974,23 @@ path = "exercises/conversions/as_ref_mut.rs"
 mode = "test"
 hint = """
 Add AsRef<str> as a trait bound to the functions."""
+
+# ADVANCED ERRORS
+
+[[exercises]]
+name = "advanced_errs1"
+path = "exercises/advanced_errors/advanced_errs1.rs"
+mode = "test"
+hint = """
+This exercise uses an updated version of the code in errors6. The parsing
+code is now in an implementation of the `FromStr` trait. Note that the
+parsing code uses `?` directly, without any calls to `map_err()`. There is
+one partial implementation of the `From` trait example that you should
+complete.
+
+Details: The `?` operator calls `From::from()` on the error type to convert
+it to the error type of the return type of the surrounding function.
+
+Hint: You will need to write another implementation of `From` that has a
+different input type.
+"""
