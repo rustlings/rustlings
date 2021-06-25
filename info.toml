@@ -994,3 +994,35 @@ it to the error type of the return type of the surrounding function.
 Hint: You will need to write another implementation of `From` that has a
 different input type.
 """
+
+[[exercises]]
+name = "advanced_errs2"
+path = "exercises/advanced_errors/advanced_errs2.rs"
+mode = "test"
+hint = """
+This exercise demonstrates a few traits that are useful for custom error
+types to implement. These traits make it easier for other code to consume
+the custom error type.
+
+Follow the steps in the comment near the top of the file. You will have to
+supply a missing trait implementation, and complete a few incomplete ones.
+
+You may find these pages to be helpful references:
+https://doc.rust-lang.org/stable/rust-by-example/error/multiple_error_types/define_error_type.html
+https://doc.rust-lang.org/stable/rust-by-example/error/multiple_error_types/boxing_errors.html
+https://doc.rust-lang.org/stable/rust-by-example/error/multiple_error_types/wrap_error.html
+
+Hint: What trait must our error type have for `main()` to return the return
+type that it returns?
+
+Another hint: It's not necessary to implement any methods inside the missing
+trait. (Some methods have default implementations that are supplied by the
+trait.)
+
+Another hint: Consult the tests to determine which error variants (and which
+error message text) to produce for certain error conditions.
+
+Challenge: There is one test that is marked `#[ignore]`. Can you supply the
+missing code that will make it pass? You may want to consult the standard
+library documentation for a certain trait for more hints.
+"""
