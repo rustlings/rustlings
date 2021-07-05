@@ -20,3 +20,4 @@ structures that are used very often in Rust programs:
 ## Further information
 
 - [Storing Lists of Values with Vectors](https://doc.rust-lang.org/stable/book/ch08-01-vectors.html)
+- [Storing Keys with Associated Values in Hash Maps](https://doc.rust-lang.org/stable/book/ch08-03-hash-maps.html)
