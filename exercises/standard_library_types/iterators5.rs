@@ -102,6 +102,7 @@ mod tests {
         map.insert(String::from("arc1"), Some);
         map.insert(String::from("as_ref_mut"), None);
         map.insert(String::from("from_str"), None);
+        map.insert(String::from("using_as"), None);
 
         map
     }
