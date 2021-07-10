@@ -937,6 +937,27 @@ hint = """
 Follow the steps provided right before the `From` implementation"""
 
 [[exercises]]
+name = "from_str"
+path = "exercises/conversions/from_str.rs"
+mode = "test"
+hint = """
+The implementation of FromStr should return an Ok with a Person object,
+or an Err with an error if the string is not valid.
+
+This is almost like the `from_into` exercise, but returning errors instead
+of falling back to a default value.
+
+Hint: Look at the test cases to see which error variants to return.
+
+Another hint: You can use the `map_err` method of `Result` with a function
+or a closure to wrap the error from `parse::<usize>`.
+
+Yet another hint: If you would like to propagate errors by using the `?`
+operator in your solution, you might want to look at
+https://doc.rust-lang.org/stable/rust-by-example/error/multiple_error_types/reenter_question_mark.html
+"""
+
+[[exercises]]
 name = "try_from_into"
 path = "exercises/conversions/try_from_into.rs"
 mode = "test"
@@ -944,17 +965,19 @@ hint = """
 Follow the steps provided right before the `TryFrom` implementation.
 You can also use the example at https://doc.rust-lang.org/std/convert/trait.TryFrom.html
 
-You might want to look back at the exercise errors5 (or its hints) to remind
-yourself about how `Box<dyn Error>` works.
+Hint: Is there an implementation of `TryFrom` in the standard library that
+can both do the required integer conversion and check the range of the input?
 
-If you're trying to return a string as an error, note that neither `str`
-nor `String` implements `error::Error`. However, there is an implementation
-of `From<&str>` for `Box<dyn Error>`. This means you can use `.into()` or
-the `?` operator to convert your string into the correct error type.
+Another hint: Look at the test cases to see which error variants to return.
 
-If you're having trouble with using the `?` operator to convert an error string,
-recall that `?` works to convert `Err(something)` into the appropriate error
-type for returning from the function."""
+Yet another hint: You can use the `map_err` or `or` methods of `Result` to
+convert errors.
+
+Yet another hint: If you would like to propagate errors by using the `?`
+operator in your solution, you might want to look at
+https://doc.rust-lang.org/stable/rust-by-example/error/multiple_error_types/reenter_question_mark.html
+
+Challenge: Can you make the `TryFrom` implementations generic over many integer types?"""
 
 [[exercises]]
 name = "as_ref_mut"
@@ -963,14 +986,54 @@ mode = "test"
 hint = """
 Add AsRef<str> as a trait bound to the functions."""
 
+# ADVANCED ERRORS
+
 [[exercises]]
-name = "from_str"
-path = "exercises/conversions/from_str.rs"
+name = "advanced_errs1"
+path = "exercises/advanced_errors/advanced_errs1.rs"
 mode = "test"
 hint = """
-The implementation of FromStr should return an Ok with a Person object,
-or an Err with an error if the string is not valid.
-This is almost like the `try_from_into` exercise.
+This exercise uses an updated version of the code in errors6. The parsing
+code is now in an implementation of the `FromStr` trait. Note that the
+parsing code uses `?` directly, without any calls to `map_err()`. There is
+one partial implementation of the `From` trait example that you should
+complete.
 
-If you're having trouble with returning the correct error type, see the
-hints for try_from_into."""
+Details: The `?` operator calls `From::from()` on the error type to convert
+it to the error type of the return type of the surrounding function.
+
+Hint: You will need to write another implementation of `From` that has a
+different input type.
+"""
+
+[[exercises]]
+name = "advanced_errs2"
+path = "exercises/advanced_errors/advanced_errs2.rs"
+mode = "test"
+hint = """
+This exercise demonstrates a few traits that are useful for custom error
+types to implement. These traits make it easier for other code to consume
+the custom error type.
+
+Follow the steps in the comment near the top of the file. You will have to
+supply a missing trait implementation, and complete a few incomplete ones.
+
+You may find these pages to be helpful references:
+https://doc.rust-lang.org/stable/rust-by-example/error/multiple_error_types/define_error_type.html
+https://doc.rust-lang.org/stable/rust-by-example/error/multiple_error_types/boxing_errors.html
+https://doc.rust-lang.org/stable/rust-by-example/error/multiple_error_types/wrap_error.html
+
+Hint: What trait must our error type have for `main()` to return the return
+type that it returns?
+
+Another hint: It's not necessary to implement any methods inside the missing
+trait. (Some methods have default implementations that are supplied by the
+trait.)
+
+Another hint: Consult the tests to determine which error variants (and which
+error message text) to produce for certain error conditions.
+
+Challenge: There is one test that is marked `#[ignore]`. Can you supply the
+missing code that will make it pass? You may want to consult the standard
+library documentation for a certain trait for more hints.
+"""
