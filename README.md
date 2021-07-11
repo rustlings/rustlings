@@ -16,6 +16,7 @@ Alternatively, for a first-time Rust learner, there are several other resources:
 ## Getting Started
 
 _Note: If you're on MacOS, make sure you've installed Xcode and its developer tools by typing `xcode-select --install`._
+_Note: If you're on Linux, make sure you've installed gcc. Deb: `sudo apt install gcc`. Yum: `sudo yum -y install gcc`._
 
 You will need to have Rust installed. You can get it by visiting https://rustup.rs. This'll also install Cargo, Rust's package/project manager.
 

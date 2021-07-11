@@ -12,6 +12,18 @@ else
     exit 1
 fi
 
+if [ -x "$(command -v cc)" ]
+then
+    echo "SUCCESS: cc is installed"
+else
+    echo "ERROR: cc does not seem to be installed."
+    echo "Please download (g)cc using your package manager."
+    echo "OSX: xcode-select --install"
+    echo "Deb: sudo apt install gcc"
+    echo "Yum: sudo yum -y install gcc"
+    exit 1
+fi
+
 if [ -x "$(command -v rustc)" ]
 then
     echo "SUCCESS: Rust is installed"
