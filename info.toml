@@ -937,6 +937,27 @@ hint = """
 Follow the steps provided right before the `From` implementation"""
 
 [[exercises]]
+name = "from_str"
+path = "exercises/conversions/from_str.rs"
+mode = "test"
+hint = """
+The implementation of FromStr should return an Ok with a Person object,
+or an Err with an error if the string is not valid.
+
+This is almost like the `from_into` exercise, but returning errors instead
+of falling back to a default value.
+
+Hint: Look at the test cases to see which error variants to return.
+
+Another hint: You can use the `map_err` method of `Result` with a function
+or a closure to wrap the error from `parse::<usize>`.
+
+Yet another hint: If you would like to propagate errors by using the `?`
+operator in your solution, you might want to look at
+https://doc.rust-lang.org/stable/rust-by-example/error/multiple_error_types/reenter_question_mark.html
+"""
+
+[[exercises]]
 name = "try_from_into"
 path = "exercises/conversions/try_from_into.rs"
 mode = "test"
@@ -944,17 +965,19 @@ hint = """
 Follow the steps provided right before the `TryFrom` implementation.
 You can also use the example at https://doc.rust-lang.org/std/convert/trait.TryFrom.html
 
-You might want to look back at the exercise errors5 (or its hints) to remind
-yourself about how `Box<dyn Error>` works.
+Hint: Is there an implementation of `TryFrom` in the standard library that
+can both do the required integer conversion and check the range of the input?
 
-If you're trying to return a string as an error, note that neither `str`
-nor `String` implements `error::Error`. However, there is an implementation
-of `From<&str>` for `Box<dyn Error>`. This means you can use `.into()` or
-the `?` operator to convert your string into the correct error type.
+Another hint: Look at the test cases to see which error variants to return.
 
-If you're having trouble with using the `?` operator to convert an error string,
-recall that `?` works to convert `Err(something)` into the appropriate error
-type for returning from the function."""
+Yet another hint: You can use the `map_err` or `or` methods of `Result` to
+convert errors.
+
+Yet another hint: If you would like to propagate errors by using the `?`
+operator in your solution, you might want to look at
+https://doc.rust-lang.org/stable/rust-by-example/error/multiple_error_types/reenter_question_mark.html
+
+Challenge: Can you make the `TryFrom` implementations generic over many integer types?"""
 
 [[exercises]]
 name = "as_ref_mut"
@@ -962,15 +985,3 @@ path = "exercises/conversions/as_ref_mut.rs"
 mode = "test"
 hint = """
 Add AsRef<str> as a trait bound to the functions."""
-
-[[exercises]]
-name = "from_str"
-path = "exercises/conversions/from_str.rs"
-mode = "test"
-hint = """
-The implementation of FromStr should return an Ok with a Person object,
-or an Err with an error if the string is not valid.
-This is almost like the `try_from_into` exercise.
-
-If you're having trouble with returning the correct error type, see the
-hints for try_from_into."""
