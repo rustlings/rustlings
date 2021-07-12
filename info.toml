@@ -1,3 +1,19 @@
+# INTRO
+
+[[exercises]]
+name = "intro1"
+path = "exercises/intro/intro1.rs"
+mode = "compile"
+hint = """
+Remove the I AM NOT DONE comment to move on to the next exercise."""
+
+[[exercises]]
+name = "intro2"
+path = "exercises/intro/intro2.rs"
+mode = "compile"
+hint = """
+Add an argument after the format string."""
+
 # VARIABLES
 
 [[exercises]]
